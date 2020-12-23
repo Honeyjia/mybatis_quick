@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+<!--    通过properties标签加载外部properties文件-->
+    <properties resource="jdbc.properties"></properties>
+
+<!--    为com.jiacool.User 定义一个别名-->
+    <typeAliases>
+        <typeAlias type="com.jiacool.domain.User" alias="user"></typeAlias>
+    </typeAliases>
+<!--    配置数据源环境-->
+    <environments default="develop">
+        <environment id="develop">
+<!--            transactionManager 事务管理器-->
+            <transactionManager type="JDBC"></transactionManager>
+<!--            数据源类型-->
+            <dataSource type="POOLED">
+<!--                配置数据源属性-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+<!--    加载映射文件-->
+    <mappers>
+        <mapper resource="com.jiacool.mapper/UserMapper.xml"></mapper>
+    </mappers>
+
+</configuration>
